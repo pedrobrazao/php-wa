@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% block head %}
+            <link rel="stylesheet" href="style.css"/>
+            <title>{% block title %}{% endblock %} - WhatsApp Demo</title>
+        {% endblock %}
+    </head>
+    <body>
+    <h1>WhatsApp Demo</h1>
+        <nav>
+<a href="{{ url_for(constant('App\\Handler\\HomeHandler::NAME')) }}">Home</a> |
+</nav>
+{% if error %}
+<div><p class="error">{{ error }}</p></div>
+{% endif %}
+<div id="content">{% block content %}{% endblock %}</div>
+        <div id="footer">
+            {% block footer %}
+                &copy; Copyright 2026 by <a href="https://github.com/pedrobrazao/entra-id-php">Pedro Ferreira</a>.
+            {% endblock %}
+        </div>
+    </body>
+</html>

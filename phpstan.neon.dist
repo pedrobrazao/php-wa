@@ -1,0 +1,10 @@
+includes:
+	- ./vendor/phpstan/phpstan/conf/bleedingEdge.neon
+parameters:
+	level: 6
+	polluteScopeWithAlwaysIterableForeach: false
+	polluteScopeWithLoopInitialAssignments: false
+	paths:
+		- config
+		- public
+		- src
