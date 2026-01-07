@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Factory;
 
 use App\Handler\HomeHandler;
+use App\Handler\WebHooks\GetHandler;
 use Psr\Container\ContainerInterface;
 use Slim\App;
 use Slim\Factory\AppFactory;
@@ -30,6 +31,7 @@ final readonly class ApplicationFactory
         $errorMiddleware = $app->addErrorMiddleware($settings['displayErrorDetails'] ?? false, $settings['logErrors'] ?? true, $settings['logErrorDetails'] ?? true);
 
         $app->get('/', HomeHandler::class)->setName(HomeHandler::NAME);
+        $app->get('/webhooks', GetHandler::class)->setName(GetHandler::NAME);
 
         return $app;
     }

@@ -21,4 +21,7 @@ return [
             'cache' => $_ENV['TWIG_CACHE'] ?? false,
         ],
     ],
+    'wa' => [
+        'verifyToken' => $_ENV['WA_VERIFY_TOKEN'] ?? '',
+    ],
 ];

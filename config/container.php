@@ -1,5 +1,7 @@
 <?php
 
+use App\Handler\WebHooks\GetHandler;
+use App\Validator\WebHooks\GetRequestValidator;
 use Monolog\Handler\StreamHandler;
 use Monolog\Level;
 use Monolog\Logger;
@@ -23,5 +25,9 @@ return file_exists(__DIR__ . '/container.local.php')
             $settings = $c->get('settings')['twig'] ?? [];
 
             return Twig::create($settings['path'], $settings['options']);
+        },
+        GetRequestValidator::class => function (ContainerInterface $c) {
+            $settings = $c->get('settings')['wa'] ?? [];
+            return new GetRequestValidator($settings['verifyToken'] ?? uniqid());
         },
     ];
