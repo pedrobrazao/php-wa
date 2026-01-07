@@ -22,6 +22,8 @@ return [
         ],
     ],
     'wa' => [
+        'fbAppId' => $_ENV['FB_APP_ID'] ?? '',
+        'fbAppSecret' => $_ENV['FB_APP_SECRET'] ?? '',
         'verifyToken' => $_ENV['WA_VERIFY_TOKEN'] ?? '',
     ],
 ];

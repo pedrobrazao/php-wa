@@ -6,6 +6,7 @@ namespace App\Factory;
 
 use App\Handler\HomeHandler;
 use App\Handler\WebHooks\GetHandler;
+use App\Handler\WebHooks\PostHandler;
 use Psr\Container\ContainerInterface;
 use Slim\App;
 use Slim\Factory\AppFactory;
@@ -32,6 +33,7 @@ final readonly class ApplicationFactory
 
         $app->get('/', HomeHandler::class)->setName(HomeHandler::NAME);
         $app->get('/webhooks', GetHandler::class)->setName(GetHandler::NAME);
+        $app->post('/webhooks', PostHandler::class)->setName(PostHandler::NAME);
 
         return $app;
     }

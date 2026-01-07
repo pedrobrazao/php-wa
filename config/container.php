@@ -2,6 +2,7 @@
 
 use App\Handler\WebHooks\GetHandler;
 use App\Validator\WebHooks\GetRequestValidator;
+use App\Validator\WebHooks\PostRequestValidator;
 use Monolog\Handler\StreamHandler;
 use Monolog\Level;
 use Monolog\Logger;
@@ -29,5 +30,9 @@ return file_exists(__DIR__ . '/container.local.php')
         GetRequestValidator::class => function (ContainerInterface $c) {
             $settings = $c->get('settings')['wa'] ?? [];
             return new GetRequestValidator($settings['verifyToken'] ?? uniqid());
+        },
+        PostRequestValidator::class => function (ContainerInterface $c) {
+            $settings = $c->get('settings')['wa'] ?? [];
+            return new PostRequestValidator($settings['fbAppSecret'] ?? uniqid());
         },
     ];
