@@ -7,7 +7,7 @@ use PhpCsFixer\Finder;
 use PhpCsFixer\Runner\Parallel\ParallelConfigFactory;
 
 return (new Config())
-    ->setParallelConfig(ParallelConfigFactory::detect()) // @TODO 4.0 no need to call this manually
+    //->setParallelConfig(ParallelConfigFactory::detect()) // @TODO 4.0 no need to call this manually
     ->setRiskyAllowed(false)
     ->setRules([
         '@auto' => true
@@ -20,7 +20,7 @@ return (new Config())
             // 💡 additional files, eg bin entry file
             // ->append([__DIR__.'/bin-entry-file'])
             // 💡 folders to exclude, if any
-            // ->exclude([/* ... */])
+            ->exclude([__DIR__ . '/var'])
             // 💡 path patterns to exclude, if any
             // ->notPath([/* ... */])
             // 💡 extra configs

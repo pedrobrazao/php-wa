@@ -15,7 +15,7 @@ final class PostRequestValidator extends AbstractRequestValidator
 {
     private const string HEADER_X_HUB_SIGNATURE_256 = 'X-Hub-Signature-256';
 
-    public function __construct(private string $secretKey) {}
+    public function __construct(private readonly string $secretKey) {}
 
     public function validate(ServerRequestInterface $request): static
     {
