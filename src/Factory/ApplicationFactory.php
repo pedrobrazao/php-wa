@@ -8,6 +8,7 @@ use App\Handler\HomeHandler;
 use App\Handler\WebHooks\GetHandler;
 use App\Handler\WebHooks\PostHandler;
 use Psr\Container\ContainerInterface;
+use Psr\Log\LoggerInterface;
 use Slim\App;
 use Slim\Factory\AppFactory;
 use Slim\Routing\RouteCollectorProxy;
@@ -29,7 +30,7 @@ final readonly class ApplicationFactory
         $app->addRoutingMiddleware();
 
         $settings = $this->container->get('settings') ?? [];
-        $errorMiddleware = $app->addErrorMiddleware($settings['displayErrorDetails'] ?? false, $settings['logErrors'] ?? true, $settings['logErrorDetails'] ?? true);
+        $app->addErrorMiddleware($settings['displayErrorDetails'] ?? false, $settings['logErrors'] ?? true, $settings['logErrorDetails'] ?? true, $this->container->get(LoggerInterface::class));
 
         $app->get('/', HomeHandler::class)->setName(HomeHandler::NAME);
         $app->get('/webhooks', GetHandler::class)->setName(GetHandler::NAME);

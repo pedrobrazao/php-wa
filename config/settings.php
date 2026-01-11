@@ -1,6 +1,7 @@
 <?php
 
 use Dotenv\Dotenv;
+use Monolog\Level;
 use Monolog\Logger;
 
 // Load values from .env into environmental variables
@@ -13,8 +14,8 @@ return [
     'logErrorDetails' => (bool) ($_ENV['APP_LOG_ERROR_DETAILS'] ?? true),
     'logger' => [
         'name' => $_ENV['LOGGER_NAME'] ?? 'app',
-        'path' => $_ENV['LOGGER_PATH'] ?? sprintf(__DIR__ . '/../var/logs/%s%s.log', $isDev ? 'dev' : 'app', date('Ymd')),
-        'level' => $_ENV['LOGGER_LEVEL'] ?? ($isDev ? Logger::DEBUG : Logger::ERROR),
+        'path' => $_ENV['LOGGER_PATH'] ?? __DIR__ . '/../var/logs' . ($isDev ? sprintf('/dev%s.log', date('Ymd')) : '/app.log'),
+        'level' => $_ENV['LOGGER_LEVEL'] ?? ($isDev ? Level::Debug : Level::Info),
     ],
     'twig' => [
         'path' => $_ENV['TWIG_TEMPLATES_PATH'] ?? __DIR__ . '/../templates',
